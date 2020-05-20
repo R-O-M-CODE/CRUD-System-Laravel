@@ -34,7 +34,7 @@ Route::get('/create', function(){
 //Read
 
 Route::get('/read', function(){
-    $post = Post::findOrFail(1);
+    $post = Post::findOrFail(2);
 
 
     foreach ($post->tags as $tag){
@@ -46,11 +46,22 @@ Route::get('/read', function(){
 // Update
 
 Route::get('/update', function(){
-    $post = Post::findOrFail(1);
+    $post = Post::findOrFail(2);
 
 
     foreach ($post->tags as $tag){
-        return $tag->whereName('Adult')->update(['name'=>'New Tag']);
+        return $tag->whereName('Coding')->update(['name'=>'New Tag']);
+    }
+
+});
+
+// Delete
+Route::get('/delete', function(){
+    $post = Post::findOrFail(2);
+
+
+    foreach ($post->tags as $tag){
+        return $tag->whereName('Coding')->delete();
     }
 
 });
