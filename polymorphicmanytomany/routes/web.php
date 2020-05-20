@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Post;
+use App\Video;
+use App\Tag;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +17,40 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+//Create
+
+Route::get('/create', function(){
+    $post = Post::create(['name'=>'My first Post']);
+    $tag = Tag::findOrFail(1);
+    $post->tags()->save($tag);
+    $video = Video::create(['name'=>'video.mp4']);
+    $tag = Tag::findOrFail(2);
+    $video->tags()->save($tag);
+});
+
+
+//Read
+
+Route::get('/read', function(){
+    $post = Post::findOrFail(1);
+
+
+    foreach ($post->tags as $tag){
+        echo $tag->name;
+    }
+
+});
+
+// Update
+
+Route::get('/update', function(){
+    $post = Post::findOrFail(1);
+
+
+    foreach ($post->tags as $tag){
+        return $tag->whereName('Adult')->update(['name'=>'New Tag']);
+    }
+
 });
