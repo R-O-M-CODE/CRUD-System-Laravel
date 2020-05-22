@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+//    return view('welcome');
+//    if (Auth::check()){
+//        return "The user is logged in";
+//    }
+//    $username = 'dvhcbi';
+//    $password = 'fdgcd';
+//    if (Auth::attempt(['username' => $username, 'passsword'=> $password])){
+//        return redirect()->intended('/admin');
+//    }
+
+    Auth::logout();
+
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
