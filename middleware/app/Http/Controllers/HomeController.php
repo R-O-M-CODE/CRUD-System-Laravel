@@ -37,5 +37,9 @@ class HomeController extends Controller
 //                OR
 //        return $request->getSession('peter');
 //        return view('home');
+
+//        $request->session()->flash('message', 'This iis the message');
+
+        return session('message');
     }
 }
